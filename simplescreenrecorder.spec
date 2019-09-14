@@ -4,7 +4,7 @@
 #
 Name     : simplescreenrecorder
 Version  : 0.3.11
-Release  : 1
+Release  : 2
 URL      : https://github.com/MaartenBaert/ssr/archive/0.3.11.tar.gz
 Source0  : https://github.com/MaartenBaert/ssr/archive/0.3.11.tar.gz
 Summary  : No detailed summary available
