@@ -4,10 +4,10 @@
 #
 Name     : simplescreenrecorder
 Version  : 0.3.11
-Release  : 2
+Release  : 3
 URL      : https://github.com/MaartenBaert/ssr/archive/0.3.11.tar.gz
 Source0  : https://github.com/MaartenBaert/ssr/archive/0.3.11.tar.gz
-Summary  : No detailed summary available
+Summary  : A feature-rich screen recorder that supports X11 and OpenGL.
 Group    : Development/Tools
 License  : GPL-3.0
 Requires: simplescreenrecorder-bin = %{version}-%{release}
@@ -62,6 +62,7 @@ Requires: simplescreenrecorder-bin = %{version}-%{release}
 Requires: simplescreenrecorder-data = %{version}-%{release}
 Provides: simplescreenrecorder-devel = %{version}-%{release}
 Requires: simplescreenrecorder = %{version}-%{release}
+Requires: simplescreenrecorder = %{version}-%{release}
 
 %description dev
 dev components for the simplescreenrecorder package.
@@ -91,9 +92,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1566941514
+export SOURCE_DATE_EPOCH=1571066639
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -103,14 +105,14 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake .. -DWITH_QT5=TRUE
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1566941514
+export SOURCE_DATE_EPOCH=1571066639
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/simplescreenrecorder
-cp COPYING %{buildroot}/usr/share/package-licenses/simplescreenrecorder/COPYING
+cp %{_builddir}/ssr-0.3.11/COPYING %{buildroot}/usr/share/package-licenses/simplescreenrecorder/8624bcdae55baeef00cd11d5dfcfa60f68710a02
 pushd clr-build
 %make_install
 popd
@@ -194,7 +196,7 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/simplescreenrecorder/COPYING
+/usr/share/package-licenses/simplescreenrecorder/8624bcdae55baeef00cd11d5dfcfa60f68710a02
 
 %files man
 %defattr(0644,root,root,0755)
