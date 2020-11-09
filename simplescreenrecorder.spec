@@ -4,10 +4,10 @@
 #
 Name     : simplescreenrecorder
 Version  : 0.3.11
-Release  : 3
+Release  : 4
 URL      : https://github.com/MaartenBaert/ssr/archive/0.3.11.tar.gz
 Source0  : https://github.com/MaartenBaert/ssr/archive/0.3.11.tar.gz
-Summary  : A feature-rich screen recorder that supports X11 and OpenGL.
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0
 Requires: simplescreenrecorder-bin = %{version}-%{release}
@@ -62,7 +62,6 @@ Requires: simplescreenrecorder-bin = %{version}-%{release}
 Requires: simplescreenrecorder-data = %{version}-%{release}
 Provides: simplescreenrecorder-devel = %{version}-%{release}
 Requires: simplescreenrecorder = %{version}-%{release}
-Requires: simplescreenrecorder = %{version}-%{release}
 
 %description dev
 dev components for the simplescreenrecorder package.
@@ -86,30 +85,30 @@ man components for the simplescreenrecorder package.
 
 %prep
 %setup -q -n ssr-0.3.11
+cd %{_builddir}/ssr-0.3.11
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571066639
+export SOURCE_DATE_EPOCH=1604905655
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake .. -DWITH_QT5=TRUE
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1571066639
+export SOURCE_DATE_EPOCH=1604905655
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/simplescreenrecorder
 cp %{_builddir}/ssr-0.3.11/COPYING %{buildroot}/usr/share/package-licenses/simplescreenrecorder/8624bcdae55baeef00cd11d5dfcfa60f68710a02
