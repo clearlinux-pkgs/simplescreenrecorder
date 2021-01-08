@@ -17,3 +17,4 @@ libpthread.so.0
 libpulse.so.0
 libstdc++.so.6
 libswscale.so.5
+libv4l2.so.0
